@@ -28,10 +28,10 @@ const getSignleUserById = catchAsync(async (req, res) => {
   });
 });
 
-const deleteSignleUserByEmail = catchAsync(async (req, res) => {
+const blockSignleUserByEmail = catchAsync(async (req, res) => {
   const { email } = req.params;
 
-  const result = await UserServices.deleteSignleUserByIdFromDB(email);
+  const result = await UserServices.blockSignleUserByIdFromDB(email);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
@@ -66,23 +66,24 @@ const getMe = catchAsync(async (req, res) => {
   });
 });
 
-// const changeStatus = catchAsync(async (req, res) => {
-//   const id = req.params.id;
+const changeStatus = catchAsync(async (req, res) => {
+  const email = req.params.email;
 
-//   const result = await UserServices.changeStatus(id, req.body);
+  const result = await UserServices.changeStatus(email, req.body);
 
-//   sendResponse(res, {
-//     statusCode: StatusCodes.OK,
-//     success: true,
-//     message: 'Status is updated succesfully',
-//     data: result,
-//   });
-// });
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Status is updated succesfully',
+    data: result,
+  });
+});
 
 export const UserControllers = {
   registerUser,
-  // getSignleUserById,
-  // deleteSignleUserByEmail,
-  // getAllUsers,
+  getSignleUserById,
+  blockSignleUserByEmail,
+  getAllUsers,
   // getMe,
+  changeStatus,
 };

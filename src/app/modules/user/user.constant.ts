@@ -5,3 +5,5 @@ export const USER_ROLE = {
 } as const;
 
 export const userSearchableFields = ['name', 'email', 'role'];
+
+export const UserStatus = ['admin', 'landLord', 'tenant'];

@@ -32,11 +32,17 @@ const loginUserService = async (payload: TLoginUser) => {
   }
 
   // create token to send to the client
+  let userId = user._id;
+  userId = userId.toString();
+  // console.log("user: ",userId);
 
   const jwtPayload = {
+    userId,
     userEmail: user?.email,
     userRole: user?.role,
   };
+
+  console.log(jwtPayload)
 
   const accessToken = createToken(
     jwtPayload,

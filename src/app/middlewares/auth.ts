@@ -34,7 +34,7 @@ const auth = (...requiredRoles: TUserRole[]) => {
       throw new AppError(StatusCodes.UNAUTHORIZED, 'Token is invalid!!!');
     }
 
-    const { userEmail, userRole, iat } = decoded;
+    const { userId, userEmail, userRole, iat } = decoded;
 
     // console.log('role: ',userRole);
     // console.log('requiredRole: ' + requiredRoles);

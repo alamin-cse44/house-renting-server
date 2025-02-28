@@ -17,7 +17,7 @@ const getSignleUserByIdFromDB = async (email: string) => {
   return result;
 };
 
-const deleteSignleUserByIdFromDB = async (email: string) => {
+const blockSignleUserByIdFromDB = async (email: string) => {
   const user = await User.findUserByEmail(email);
 
   if (!user) {
@@ -53,18 +53,18 @@ const getMeService = async (email: string, role: string) => {
   return result;
 };
 
-// const changeStatus = async (id: string, payload: { status: string }) => {
-//   const result = await User.findByIdAndUpdate(id, payload, {
-//     new: true,
-//   });
-//   return result;
-// };
+const changeStatus = async (email: string, payload: { role: string }) => {
+  const result = await User.findOneAndUpdate({email}, payload, {
+    new: true,
+  });
+  return result;
+};
 
 export const UserServices = {
   registerUserIntoDB,
   getSignleUserByIdFromDB,
   getAllUsersFromDB,
   getMeService,
-  deleteSignleUserByIdFromDB,
-  // changeStatus,
+  blockSignleUserByIdFromDB,
+  changeStatus,
 };
