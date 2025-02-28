@@ -81,8 +81,8 @@ const getMe = catchAsync(async (req, res) => {
 
 export const UserControllers = {
   registerUser,
-  getSignleUserById,
-  deleteSignleUserByEmail,
-  getAllUsers,
-  getMe,
+  // getSignleUserById,
+  // deleteSignleUserByEmail,
+  // getAllUsers,
+  // getMe,
 };

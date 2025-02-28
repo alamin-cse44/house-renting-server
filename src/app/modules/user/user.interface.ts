@@ -5,7 +5,7 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
-  role: 'admin' | 'customer';
+  role: 'admin' | 'landLord' | 'tenant';
   isBlocked: boolean;
   image: string;
 }

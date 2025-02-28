@@ -13,17 +13,17 @@ router.post(
   UserControllers.registerUser,
 );
 
-router.get(
-  '/single-user/:email',
-  auth(USER_ROLE.admin, USER_ROLE.customer),
-  UserControllers.getSignleUserById,
-);
+// router.get(
+//   '/single-user/:email',
+//   auth(USER_ROLE.admin, USER_ROLE.customer),
+//   UserControllers.getSignleUserById,
+// );
 
-router.delete(
-  '/delete-user/:email',
-  auth(USER_ROLE.admin),
-  UserControllers.deleteSignleUserByEmail,
-);
+// router.delete(
+//   '/delete-user/:email',
+//   auth(USER_ROLE.admin),
+//   UserControllers.deleteSignleUserByEmail,
+// );
 
 // router.post(
 //   '/change-status/:id',
@@ -32,8 +32,8 @@ router.delete(
 //   UserControllers.changeStatus,
 // );
 
-router.get('/all-users', auth('admin'), UserControllers.getAllUsers);
+// router.get('/all-users', auth('admin'), UserControllers.getAllUsers);
 
-router.get('/me', auth('admin', 'customer'), UserControllers.getMe);
+// router.get('/me', auth('admin', 'customer'), UserControllers.getMe);
 
 export const UserRouters = router;
