@@ -17,54 +17,14 @@ const getSignleUserByIdFromDB = async (email: string) => {
   return result;
 };
 
-const blockSignleUserByIdFromDB = async (email: string) => {
-  const user = await User.findUserByEmail(email);
-
-  if (!user) {
-    throw new AppError(StatusCodes.NOT_FOUND, 'User not found');
-  }
-
-  const result = await User.findOneAndUpdate(
-    { email },
-    { isBlocked: !user?.isBlocked },
-    { new: true, runValidators: true },
-  );
-
-  return result;
-};
-
-const getAllUsersFromDB = async (query: Record<string, unknown>) => {
-  const userQuery = new QeryBuilder(User.find(), query)
-    .search(userSearchableFields)
-    .filter()
-    .sort()
-    .sortByAscOrDesc()
-    .paginate()
-    .fields();
-
-  const result = await userQuery.modelQuery;
-
-  return result;
-};
-
 const getMeService = async (email: string, role: string) => {
   const result = await User.findUserByEmail(email);
 
   return result;
 };
 
-const changeStatus = async (email: string, payload: { role: string }) => {
-  const result = await User.findOneAndUpdate({email}, payload, {
-    new: true,
-  });
-  return result;
-};
-
 export const UserServices = {
   registerUserIntoDB,
   getSignleUserByIdFromDB,
-  getAllUsersFromDB,
   getMeService,
-  blockSignleUserByIdFromDB,
-  changeStatus,
 };

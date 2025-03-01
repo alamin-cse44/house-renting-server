@@ -19,21 +19,6 @@ router.get(
   UserControllers.getSignleUserById,
 );
 
-router.delete(
-  '/delete-user/:email',
-  auth(USER_ROLE.admin),
-  UserControllers.blockSignleUserByEmail,
-);
-
-router.post(
-  '/change-status/:email',
-  auth('admin'),
-  validateRequest(UserValidations.changeStatusValidationSchema),
-  UserControllers.changeStatus,
-);
-
-router.get('/all-users', auth('admin'), UserControllers.getAllUsers);
-
 // router.get('/me', auth('admin', 'customer'), UserControllers.getMe);
 
 export const UserRouters = router;

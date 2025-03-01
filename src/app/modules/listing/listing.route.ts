@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.post(
   '/',
-  auth(USER_ROLE.landLord),
+  auth(USER_ROLE.landLord, USER_ROLE.admin),
   validateRequest(ListingValidations.createListingValidaitonSchema),
   ListingControllers.createListing,
 );

@@ -28,29 +28,7 @@ const getSignleUserById = catchAsync(async (req, res) => {
   });
 });
 
-const blockSignleUserByEmail = catchAsync(async (req, res) => {
-  const { email } = req.params;
 
-  const result = await UserServices.blockSignleUserByIdFromDB(email);
-
-  sendResponse(res, {
-    statusCode: StatusCodes.OK,
-    success: true,
-    message: 'User deleted successfully',
-    data: result,
-  });
-});
-
-const getAllUsers = catchAsync(async (req, res) => {
-  const result = await UserServices.getAllUsersFromDB(req.query);
-
-  sendResponse(res, {
-    statusCode: StatusCodes.OK,
-    success: true,
-    message: 'Users retrieved successfully',
-    data: result,
-  });
-});
 
 const getMe = catchAsync(async (req, res) => {
   console.log('get me', req.user);
@@ -66,24 +44,10 @@ const getMe = catchAsync(async (req, res) => {
   });
 });
 
-const changeStatus = catchAsync(async (req, res) => {
-  const email = req.params.email;
 
-  const result = await UserServices.changeStatus(email, req.body);
-
-  sendResponse(res, {
-    statusCode: StatusCodes.OK,
-    success: true,
-    message: 'Status is updated succesfully',
-    data: result,
-  });
-});
 
 export const UserControllers = {
   registerUser,
   getSignleUserById,
-  blockSignleUserByEmail,
-  getAllUsers,
   // getMe,
-  changeStatus,
 };
