@@ -32,9 +32,9 @@ const getSignleUserById = catchAsync(async (req, res) => {
 
 const getMe = catchAsync(async (req, res) => {
   console.log('get me', req.user);
-  const { userEmail, userRole } = req.user;
+  const { userId } = req.user;
 
-  const result = await UserServices.getMeService(userEmail, userRole);
+  const result = await UserServices.getMeService(userId);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
@@ -49,5 +49,5 @@ const getMe = catchAsync(async (req, res) => {
 export const UserControllers = {
   registerUser,
   getSignleUserById,
-  // getMe,
+  getMe,
 };

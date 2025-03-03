@@ -17,8 +17,8 @@ const getSignleUserByIdFromDB = async (email: string) => {
   return result;
 };
 
-const getMeService = async (email: string, role: string) => {
-  const result = await User.findUserByEmail(email);
+const getMeService = async (id: string) => {
+  const result = await User.isUserExistById(id);
 
   return result;
 };

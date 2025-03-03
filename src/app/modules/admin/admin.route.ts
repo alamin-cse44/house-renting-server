@@ -15,6 +15,7 @@ router.patch(
   AdminControllers.updateRole,
 );
 
+
 router.delete(
   '/user/:email',
   auth('admin'),

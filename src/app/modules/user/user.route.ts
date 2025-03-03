@@ -19,6 +19,6 @@ router.get(
   UserControllers.getSignleUserById,
 );
 
-// router.get('/me', auth('admin', 'customer'), UserControllers.getMe);
+router.get('/me', auth('admin', 'landLord', 'tenant'), UserControllers.getMe);
 
 export const UserRouters = router;

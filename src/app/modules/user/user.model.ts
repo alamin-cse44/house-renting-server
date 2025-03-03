@@ -18,7 +18,6 @@ const userSchema = new Schema<IUser, UserModel>(
     phone: {
       type: String,
       required: [true, 'Please enter your phone number'],
-      unique: true,
     },
     password: {
       type: String,

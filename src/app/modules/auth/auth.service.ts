@@ -40,9 +40,13 @@ const loginUserService = async (payload: TLoginUser) => {
     userId,
     userEmail: user?.email,
     userRole: user?.role,
+    phone: user?.phone,
+    name: user?.name,
+    image: user?.image,
+    isBlocked: user?.isBlocked,
   };
 
-  console.log(jwtPayload)
+  console.log(jwtPayload);
 
   const accessToken = createToken(
     jwtPayload,
