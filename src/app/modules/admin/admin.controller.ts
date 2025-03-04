@@ -27,15 +27,17 @@ const updateRole = catchAsync(async (req, res) => {
   });
 });
 
-const blockSignleUserByEmail = catchAsync(async (req, res) => {
-  const { email } = req.params;
+const blockSignleUserById = catchAsync(async (req, res) => {
+  const { id } = req.params;
 
-  const result = await AdminServices.blockSignleUserByIdFromDB(email);
+  console.log("id", id);
+
+  const result = await AdminServices.blockSignleUserByIdFromDB(id);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
-    message: 'User deleted successfully',
+    message: 'User blocked successfully',
     data: result,
   });
 });
@@ -54,6 +56,6 @@ const getAllListings = catchAsync(async (req, res) => {
 export const AdminControllers = {
   updateRole,
   getAllUsers,
-  blockSignleUserByEmail,
+  blockSignleUserById,
   getAllListings,
 };

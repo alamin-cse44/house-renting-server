@@ -27,15 +27,15 @@ const updateRoleService = async (id: string, payload: { role: string }) => {
   return result;
 };
 
-const blockSignleUserByIdFromDB = async (email: string) => {
-  const user = await User.findUserByEmail(email);
+const blockSignleUserByIdFromDB = async (id: string) => {
+  const user = await User.isUserExistById(id);
 
   if (!user) {
     throw new AppError(StatusCodes.NOT_FOUND, 'User not found');
   }
-
-  const result = await User.findOneAndUpdate(
-    { email },
+  console.log('service');
+  const result = await User.findByIdAndUpdate(
+    id,
     { isBlocked: !user?.isBlocked },
     { new: true, runValidators: true },
   );

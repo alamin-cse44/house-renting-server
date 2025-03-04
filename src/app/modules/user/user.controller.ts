@@ -28,10 +28,20 @@ const getSignleUserById = catchAsync(async (req, res) => {
   });
 });
 
+const updateMe = catchAsync(async (req, res) => {
+  const { userId } = req.user;
 
+  const result = await UserServices.updateMeService(userId, req.body);
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'User is updated successfully',
+    data: result,
+  });
+});
 
 const getMe = catchAsync(async (req, res) => {
-  console.log('get me', req.user);
   const { userId } = req.user;
 
   const result = await UserServices.getMeService(userId);
@@ -44,10 +54,9 @@ const getMe = catchAsync(async (req, res) => {
   });
 });
 
-
-
 export const UserControllers = {
   registerUser,
   getSignleUserById,
+  updateMe,
   getMe,
 };

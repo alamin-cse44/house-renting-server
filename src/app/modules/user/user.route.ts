@@ -18,6 +18,11 @@ router.get(
   auth(USER_ROLE.admin, USER_ROLE.landLord, USER_ROLE.tenant),
   UserControllers.getSignleUserById,
 );
+router.patch(
+  '/update-me',
+  auth(USER_ROLE.admin, USER_ROLE.landLord, USER_ROLE.tenant),
+  UserControllers.updateMe,
+);
 
 router.get('/me', auth('admin', 'landLord', 'tenant'), UserControllers.getMe);
 

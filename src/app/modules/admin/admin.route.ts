@@ -17,9 +17,9 @@ router.patch(
 
 
 router.delete(
-  '/user/:email',
+  '/user/:id',
   auth('admin'),
-  AdminControllers.blockSignleUserByEmail,
+  AdminControllers.blockSignleUserById,
 );
 
 router.patch(

@@ -17,6 +17,23 @@ const getSignleUserByIdFromDB = async (email: string) => {
   return result;
 };
 
+const updateMeService = async (
+  id: string,
+  payload: { email?: string; phone?: string; name?: string; image?: string },
+) => {
+  const user = await User.isUserExistById(id);
+  if (!user) {
+    throw new AppError(StatusCodes.NOT_FOUND, 'User not found');
+  }
+
+  const result = await User.findByIdAndUpdate(id, payload, {
+    new: true,
+    runValidators: true,
+  });
+
+  return result;
+};
+
 const getMeService = async (id: string) => {
   const result = await User.isUserExistById(id);
 
@@ -26,5 +43,6 @@ const getMeService = async (id: string) => {
 export const UserServices = {
   registerUserIntoDB,
   getSignleUserByIdFromDB,
+  updateMeService,
   getMeService,
 };
