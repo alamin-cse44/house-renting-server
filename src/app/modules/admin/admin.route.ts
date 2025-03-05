@@ -11,7 +11,7 @@ const router = express.Router();
 router.patch(
   '/users/:id',
   auth('admin'),
-  validateRequest(AdminValidations.updateUserRoleValidationSchema),
+  // validateRequest(AdminValidations.updateUserRoleValidationSchema),
   AdminControllers.updateRole,
 );
 

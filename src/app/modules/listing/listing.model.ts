@@ -3,6 +3,10 @@ import { IListing, ListingModel } from './listing.interface';
 
 const listingSchema = new Schema<IListing, ListingModel>(
   {
+    apartmentType: {
+      type: String,
+      required: true,
+    },
     landLord: {
       type: Schema.Types.ObjectId,
       ref: 'User',

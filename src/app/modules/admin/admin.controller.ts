@@ -17,6 +17,7 @@ const getAllUsers = catchAsync(async (req, res) => {
 const updateRole = catchAsync(async (req, res) => {
   const id = req.params.id;
 
+  console.log("res", id, req.body)
   const result = await AdminServices.updateRoleService(id, req.body);
 
   sendResponse(res, {
@@ -29,8 +30,6 @@ const updateRole = catchAsync(async (req, res) => {
 
 const blockSignleUserById = catchAsync(async (req, res) => {
   const { id } = req.params;
-
-  console.log("id", id);
 
   const result = await AdminServices.blockSignleUserByIdFromDB(id);
 

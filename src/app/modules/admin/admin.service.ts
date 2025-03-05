@@ -21,6 +21,7 @@ const getAllUsersFromDB = async (query: Record<string, unknown>) => {
 };
 
 const updateRoleService = async (id: string, payload: { role: string }) => {
+  // console.log({id, payload})
   const result = await User.findByIdAndUpdate(id, payload, {
     new: true,
   });

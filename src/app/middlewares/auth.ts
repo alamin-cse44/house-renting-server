@@ -17,7 +17,7 @@ const auth = (...requiredRoles: TUserRole[]) => {
       token = req.headers.authorization;
     }
     // console.log('token :', token);
-    console.log('aiche ekhane');
+    
     // check the token is exist
     if (!token) {
       throw new AppError(StatusCodes.BAD_REQUEST, 'You are not Authorized!!!');
@@ -57,6 +57,8 @@ const auth = (...requiredRoles: TUserRole[]) => {
         'You are not allowed to this action!!!',
       );
     }
+
+    console.log('pass the cases');
 
     // decoded undefined
     req.user = decoded;

@@ -2,6 +2,7 @@ import { Document, Model, Types } from 'mongoose';
 import { IUser } from '../user/user.interface';
 
 export interface IListing {
+  apartmentType: string;
   landLord: Types.ObjectId | IUser;
   location: string;
   description: string;
