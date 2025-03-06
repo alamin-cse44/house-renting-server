@@ -16,11 +16,11 @@ router.post(
 
 router.get('/', auth(USER_ROLE.landLord), ListingControllers.getAllListings);
 
-router.get('/:id', auth(USER_ROLE.landLord, USER_ROLE.admin), ListingControllers.getListingById);
+router.get('/:id', ListingControllers.getListingById);
 
 router.patch(
   '/:id',
-  auth(USER_ROLE.landLord),
+  auth(USER_ROLE.landLord, USER_ROLE.admin),
   validateRequest(ListingValidations.updateListingValidaitonSchema),
   ListingControllers.updateListingById,
 );

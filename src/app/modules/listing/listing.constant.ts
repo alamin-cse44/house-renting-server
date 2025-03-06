@@ -1,1 +1,1 @@
-export const listingSearchableFields = ['location', 'bedrooms'];
+export const listingSearchableFields = ['location', 'apartmentType'];

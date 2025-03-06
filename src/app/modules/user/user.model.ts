@@ -34,6 +34,7 @@ const userSchema = new Schema<IUser, UserModel>(
     },
     image: {
       type: String,
+      required: [true, 'Please upload your profile image'],
     },
   },
   {

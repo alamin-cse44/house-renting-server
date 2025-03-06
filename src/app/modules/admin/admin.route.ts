@@ -15,23 +15,18 @@ router.patch(
   AdminControllers.updateRole,
 );
 
-
-router.delete(
-  '/user/:id',
-  auth('admin'),
-  AdminControllers.blockSignleUserById,
-);
+router.delete('/user/:id', auth('admin'), AdminControllers.blockSignleUserById);
 
 router.patch(
   '/listings/:id',
-  auth('admin'),
+  auth('admin', 'landLord'),
   validateRequest(ListingValidations.updateListingValidaitonSchema),
   ListingControllers.updateListingById,
 );
 
 router.get(
   '/listings/:id',
-  auth('admin'),
+  auth('admin', 'landLord'),
   ListingControllers.getListingById,
 );
 
