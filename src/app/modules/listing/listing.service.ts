@@ -41,7 +41,7 @@ const getListingByIdFromDB = async (id: string) => {
   if (!listing) {
     throw new AppError(StatusCodes.NOT_FOUND, 'Listing not found');
   }
-  const result = await Listing.findById(id);
+  const result = await Listing.findById(id).populate("landLord");
 
   return result;
 };

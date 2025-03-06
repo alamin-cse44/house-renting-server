@@ -15,7 +15,6 @@ const listingSchema = new Schema<IListing, ListingModel>(
     location: {
       type: String,
       required: [true, 'Please enter the house location'],
-      unique: true,
       trim: true,
     },
     description: {
@@ -38,9 +37,12 @@ const listingSchema = new Schema<IListing, ListingModel>(
         message: 'The house price must be a positive number',
       },
     },
-    image: {
-      type: [String],
-    },
+    image: [
+      {
+        url: { type: String, required: true },
+        _id: false,
+      },
+    ],
   },
   {
     timestamps: true,

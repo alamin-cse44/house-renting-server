@@ -1,6 +1,7 @@
 import { Document, Model, Types } from 'mongoose';
 import { IUser } from '../user/user.interface';
 
+
 export interface IListing {
   apartmentType: string;
   landLord: Types.ObjectId | IUser;
@@ -8,7 +9,7 @@ export interface IListing {
   description: string;
   price: number;
   bedrooms: number;
-  image?: string[];
+  image: {url: string }[];
 }
 
 export type ListingDocument = IListing & Document;

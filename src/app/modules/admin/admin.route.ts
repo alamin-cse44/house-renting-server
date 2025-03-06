@@ -29,6 +29,12 @@ router.patch(
   ListingControllers.updateListingById,
 );
 
+router.get(
+  '/listings/:id',
+  auth('admin'),
+  ListingControllers.getListingById,
+);
+
 router.delete(
   '/listings/:id',
   auth('admin'),
