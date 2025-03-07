@@ -8,6 +8,7 @@ const createListingValidaitonSchema = z.object({
     description: z.string({ required_error: 'description must be provided' }),
     price: z.number().min(1).max(1000000),
     bedrooms: z.number().min(1).max(30),
+    category: z.string({ required_error: 'category must be provided' }),
   }),
 });
 
@@ -23,6 +24,9 @@ const updateListingValidaitonSchema = z.object({
     description: z.string().optional(),
     price: z.number().min(1).max(1000000).optional(),
     bedrooms: z.number().min(1).max(30).optional(),
+    category: z
+      .string({ required_error: 'category must be provided' })
+      .optional(),
   }),
 });
 

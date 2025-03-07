@@ -43,6 +43,20 @@ const listingSchema = new Schema<IListing, ListingModel>(
         _id: false,
       },
     ],
+    category: {
+      type: String,
+      required: [
+        true,
+        'Category should be familyHouse or bachelorMess, femaleMess, office, warehouse',
+      ],
+      enum: [
+        'familyHouse',
+        'bachelorMess',
+        'femaleMess',
+        'office',
+        'warehouse',
+      ],
+    },
   },
   {
     timestamps: true,
