@@ -14,7 +14,11 @@ router.post(
   RequestControllers.createRequest,
 );
 
-// router.get('/', auth(USER_ROLE.landLord), ListingControllers.getAllListings);
+router.get(
+  '/requests',
+  auth(USER_ROLE.admin, USER_ROLE.tenant),
+  RequestControllers.getAllRequests,
+);
 
 // router.get('/:id', ListingControllers.getListingById);
 

@@ -3,6 +3,7 @@ import QeryBuilder from '../../builder/QeryBuilder';
 import AppError from '../../errors/AppError';
 import { Request } from './tenant.model';
 import { IRequest } from './tenant.interface';
+import { requestSearchableFields } from './tanant.constant';
 
 const createRequestIntoDB = async (payload: IRequest) => {
   const result = await Request.create(payload);
@@ -10,28 +11,29 @@ const createRequestIntoDB = async (payload: IRequest) => {
   return result;
 };
 
-// const getAllListingsFromDB = async (
-//   id: string,
-//   query: Record<string, unknown>,
-// ) => {
-//   // const queryObj = { ...query };
+const getAllRequestsFromDB = async (
+  id: string,
+  query: Record<string, unknown>,
+) => {
+  // TODO: Populate
+  const requestQuery = new QeryBuilder(
+    Request.find({ tenant: id })
+      .populate('listing')
+      .populate('tenant')
+      .populate('landlord'),
+    query,
+  )
+    .search(requestSearchableFields)
+    .filter()
+    .sort()
+    .sortByAscOrDesc()
+    .paginate()
+    .fields();
 
-//   // TODO: Populate
-//   const bikeQuery = new QeryBuilder(
-//     Listing.find({ landLord: id }).populate('landLord'),
-//     query,
-//   )
-//     .search(listingSearchableFields)
-//     .filter()
-//     .sort()
-//     .sortByAscOrDesc()
-//     .paginate()
-//     .fields();
+  const result = await requestQuery.modelQuery;
 
-//   const result = await bikeQuery.modelQuery;
-
-//   return result;
-// };
+  return result;
+};
 
 // const getListingByIdFromDB = async (id: string) => {
 //   // check if listing exists by id
@@ -81,4 +83,5 @@ const createRequestIntoDB = async (payload: IRequest) => {
 
 export const RequestServices = {
   createRequestIntoDB,
+  getAllRequestsFromDB,
 };

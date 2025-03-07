@@ -4,6 +4,8 @@ import AppError from '../../errors/AppError';
 import { IListing } from './listing.interface';
 import { Listing } from './listing.model';
 import { listingSearchableFields } from './listing.constant';
+import { Request } from '../tenant/tenant.model';
+import { requestSearchableFields } from '../tenant/tanant.constant';
 
 const createListingIntoDB = async (payload: IListing) => {
   const result = await Listing.create(payload);
@@ -15,10 +17,8 @@ const getAllListingsFromDB = async (
   id: string,
   query: Record<string, unknown>,
 ) => {
-  // const queryObj = { ...query };
-
   // TODO: Populate
-  const bikeQuery = new QeryBuilder(
+  const listingQuery = new QeryBuilder(
     Listing.find({ landLord: id }).populate('landLord'),
     query,
   )
@@ -29,7 +29,31 @@ const getAllListingsFromDB = async (
     .paginate()
     .fields();
 
-  const result = await bikeQuery.modelQuery;
+  const result = await listingQuery.modelQuery;
+
+  return result;
+};
+
+const getAllRequestsFromDB = async (
+  id: string,
+  query: Record<string, unknown>,
+) => {
+  // TODO: Populate
+  const requestQuery = new QeryBuilder(
+    Request.find({ landlord: id })
+      .populate('listing')
+      .populate('tenant')
+      .populate('landlord'),
+    query,
+  )
+    .search(requestSearchableFields)
+    .filter()
+    .sort()
+    .sortByAscOrDesc()
+    .paginate()
+    .fields();
+
+  const result = await requestQuery.modelQuery;
 
   return result;
 };
@@ -41,7 +65,7 @@ const getListingByIdFromDB = async (id: string) => {
   if (!listing) {
     throw new AppError(StatusCodes.NOT_FOUND, 'Listing not found');
   }
-  const result = await Listing.findById(id).populate("landLord");
+  const result = await Listing.findById(id).populate('landLord');
 
   return result;
 };
@@ -83,6 +107,7 @@ const deleteListingByIdFromDB = async (id: string) => {
 export const ListingServices = {
   createListingIntoDB,
   getAllListingsFromDB,
+  getAllRequestsFromDB,
   getListingByIdFromDB,
   updateListingByIdIntoDB,
   deleteListingByIdFromDB,

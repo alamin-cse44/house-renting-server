@@ -13,6 +13,11 @@ const requestingSchema = new Schema<IRequest, RequestModel>(
       ref: 'User',
       required: true,
     },
+    landlord: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
     moveInDate: {
       type: String,
       required: [true, 'Please enter the move in date'],

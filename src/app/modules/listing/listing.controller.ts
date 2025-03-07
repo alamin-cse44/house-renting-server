@@ -15,7 +15,7 @@ const createListing = catchAsync(async (req, res) => {
 });
 
 const getAllListings = catchAsync(async (req, res) => {
-//   console.log('req user', req.user);
+  //   console.log('req user', req.user);
   const { userId } = req.user;
   const result = await ListingServices.getAllListingsFromDB(userId, req.query);
 
@@ -23,6 +23,19 @@ const getAllListings = catchAsync(async (req, res) => {
     statusCode: StatusCodes.OK,
     success: true,
     message: 'Listings are retrieved successfully',
+    data: result,
+  });
+});
+
+const getAllRequests = catchAsync(async (req, res) => {
+  //   console.log('req user', req.user);
+  const { userId } = req.user;
+  const result = await ListingServices.getAllRequestsFromDB(userId, req.query);
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Requests are retrieved successfully',
     data: result,
   });
 });
@@ -66,6 +79,7 @@ const deleteListingById = catchAsync(async (req, res) => {
 export const ListingControllers = {
   createListing,
   getAllListings,
+  getAllRequests,
   getListingById,
   updateListingById,
   deleteListingById,

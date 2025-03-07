@@ -8,25 +8,35 @@ import { ListingControllers } from './listing.controller';
 const router = express.Router();
 
 router.post(
-  '/',
+  '/listings',
   auth(USER_ROLE.landLord, USER_ROLE.admin),
   validateRequest(ListingValidations.createListingValidaitonSchema),
   ListingControllers.createListing,
 );
 
-router.get('/', auth(USER_ROLE.landLord), ListingControllers.getAllListings);
+router.get(
+  '/listings',
+  auth(USER_ROLE.landLord),
+  ListingControllers.getAllListings,
+);
 
-router.get('/:id', ListingControllers.getListingById);
+router.get(
+  '/requests',
+  auth(USER_ROLE.landLord, USER_ROLE.admin),
+  ListingControllers.getAllRequests,
+);
+
+router.get('/listings/:id', ListingControllers.getListingById);
 
 router.patch(
-  '/:id',
+  '/listings/:id',
   auth(USER_ROLE.landLord, USER_ROLE.admin),
   validateRequest(ListingValidations.updateListingValidaitonSchema),
   ListingControllers.updateListingById,
 );
 
 router.delete(
-  '/:id',
+  '/listings/:id',
   auth(USER_ROLE.landLord),
   ListingControllers.deleteListingById,
 );

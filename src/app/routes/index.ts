@@ -25,7 +25,7 @@ const moduleRoutes = [
     route: AdminRouters,
   },
   {
-    path: '/landlords/listings',
+    path: '/landlords',
     route: ListingRouters,
   },
   {

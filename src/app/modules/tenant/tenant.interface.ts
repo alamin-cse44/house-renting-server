@@ -5,6 +5,7 @@ import { IListing } from '../listing/listing.interface';
 export interface IRequest {
   listing: Types.ObjectId | IListing;
   tenant: Types.ObjectId | IUser;
+  landlord: Types.ObjectId | IUser;
   moveInDate: string;
   duration: number;
   rentalStatus: 'pending' | 'approved' | 'rejected';
