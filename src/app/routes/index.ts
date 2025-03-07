@@ -7,6 +7,7 @@ import { OrderRouters } from '../modules/order/order.route';
 import { CartRouters } from '../modules/cart/cart.route';
 import { PaymentRouters } from '../modules/payment/payment.route';
 import { ListingRouters } from '../modules/listing/listing.route';
+import { RequestRouters } from '../modules/tenant/tenant.route';
 
 const router = Router();
 
@@ -26,6 +27,10 @@ const moduleRoutes = [
   {
     path: '/landlords/listings',
     route: ListingRouters,
+  },
+  {
+    path: '/tenants',
+    route: RequestRouters,
   },
   {
     path: '/bikes',
