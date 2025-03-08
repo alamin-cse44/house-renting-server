@@ -34,30 +34,6 @@ const getAllListingsFromDB = async (
   return result;
 };
 
-const getAllRequestsFromDB = async (
-  id: string,
-  query: Record<string, unknown>,
-) => {
-  // TODO: Populate
-  const requestQuery = new QeryBuilder(
-    Request.find({ landlord: id })
-      .populate('listing')
-      .populate('tenant')
-      .populate('landlord'),
-    query,
-  )
-    .search(requestSearchableFields)
-    .filter()
-    .sort()
-    .sortByAscOrDesc()
-    .paginate()
-    .fields();
-
-  const result = await requestQuery.modelQuery;
-
-  return result;
-};
-
 const getListingByIdFromDB = async (id: string) => {
   // check if listing exists by id
   const listing = await Listing.isListingExistById(id);
@@ -104,11 +80,47 @@ const deleteListingByIdFromDB = async (id: string) => {
   return result;
 };
 
+const getAllRequestsFromDB = async (
+  id: string,
+  query: Record<string, unknown>,
+) => {
+  // TODO: Populate
+  const requestQuery = new QeryBuilder(
+    Request.find({ landlord: id })
+      .populate('listing')
+      .populate('tenant')
+      .populate('landlord'),
+    query,
+  )
+    .search(requestSearchableFields)
+    .filter()
+    .sort()
+    .sortByAscOrDesc()
+    .paginate()
+    .fields();
+
+  const result = await requestQuery.modelQuery;
+
+  return result;
+};
+
+const updateRequestService = async (
+  id: string,
+  payload: { rentalStatus: string },
+) => {
+  // console.log({id, payload})
+  const result = await Request.findByIdAndUpdate(id, payload, {
+    new: true,
+  });
+  return result;
+};
+
 export const ListingServices = {
   createListingIntoDB,
   getAllListingsFromDB,
-  getAllRequestsFromDB,
   getListingByIdFromDB,
   updateListingByIdIntoDB,
   deleteListingByIdFromDB,
+  getAllRequestsFromDB,
+  updateRequestService,
 };

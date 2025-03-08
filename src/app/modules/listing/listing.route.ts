@@ -26,6 +26,12 @@ router.get(
   ListingControllers.getAllRequests,
 );
 
+router.patch(
+  '/requests/:id',
+  auth(USER_ROLE.landLord, USER_ROLE.admin),
+  ListingControllers.updateRequestById,
+);
+
 router.get('/listings/:id', ListingControllers.getListingById);
 
 router.patch(
