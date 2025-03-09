@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { Order } from '../order/order.model';
 import { IPaymentData } from './payment.interface';
+import { Request } from '../tenant/tenant.model';
 
 const createPaymentService = async (payload: IPaymentData) => {
   const response = await axios({
@@ -12,7 +12,7 @@ const createPaymentService = async (payload: IPaymentData) => {
     },
   });
 
-  const res = await Order.findByIdAndUpdate(
+  const res = await Request.findByIdAndUpdate(
     payload.orderID,
     { transactionId: payload.tran_id },
     {

@@ -22,7 +22,7 @@ app.use(express.urlencoded());
 app.use('/api/v1', router);
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Welcome to the Bike Shop Project!');
+  res.send('Welcome to the House Renting Project!');
 });
 
 // global error handler

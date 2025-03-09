@@ -4,23 +4,26 @@ import { StatusCodes } from 'http-status-codes';
 import sendResponse from '../../utils/sendResponse';
 import mongoose from 'mongoose';
 import { PaymentServices } from './payment.service';
-import { Order } from '../order/order.model';
+import { Request as RequestModel } from '../tenant/tenant.model';
 
 const createPayment = catchAsync(async (req: Request, res: Response) => {
-  const { totalPrice, _id } = req.body;
+  const { listing, _id } = req.body;
   const trxId =
     new mongoose.Types.ObjectId() + Math.random().toString(36).substring(2, 5);
   let initiateData = {
     store_id: 'pndse66bf93623f146',
     store_passwd: 'pndse66bf93623f146@ssl',
     orderID: _id,
-    total_amount: totalPrice,
+    total_amount: listing?.price,
     currency: 'BDT',
     tran_id: trxId,
-    success_url:
-      'https://a4-bike-shop-server.vercel.app/api/v1/payments/success',
-    fail_url: 'https://a4-bike-shop-server.vercel.app/api/v1/payments/fail',
-    cancel_url: 'https://a4-bike-shop-server.vercel.app/api/v1/payments/cancel',
+    success_url: 'http://localhost:5000/api/v1/payments/success',
+    fail_url: 'http://localhost:5000/api/v1/payments/fail',
+    cancel_url: 'http://localhost:5000/api/v1/payments/cancel',
+    // success_url:
+    //   'https://a4-bike-shop-server.vercel.app/api/v1/payments/success',
+    // fail_url: 'https://a4-bike-shop-server.vercel.app/api/v1/payments/fail',
+    // cancel_url: 'https://a4-bike-shop-server.vercel.app/api/v1/payments/cancel',
     cus_name: 'Customer Name',
     cus_email: 'cust@yahoo.com',
     shipping_method: 'NO',
@@ -68,25 +71,26 @@ const succesPayment = catchAsync(async (req: Request, res: Response) => {
     throw new Error('Unathorized payment');
   }
   const updateData = {
-    paymentMethod: successData.card_type,
-    paymentStatus: 'success',
+    transactionId: successData.tran_id,
+    paymentStatus: 'successed',
   };
 
-  const update = await Order.findOneAndUpdate(
+  const update = await RequestModel.findOneAndUpdate(
     { transactionId: successData.tran_id },
     updateData,
     { new: true, runValidators: true },
   );
 
-  res.redirect('https://a4-bike-shop-client.vercel.app/dashboard/my-orders');
+  res.redirect('http://localhost:3000/tenant-requests');
+  // res.redirect('https://a4-bike-shop-client.vercel.app/dashboard/my-orders');
 });
 
 const failPayment = catchAsync(async (req: Request, res: Response) => {
-  res.redirect('https://a4-bike-shop-client.vercel.app/payment-error');
+  res.redirect('http://localhost:3000/tenant-requests/payment');
 });
 
 const cancelPayment = catchAsync(async (req: Request, res: Response) => {
-  res.redirect('https://a4-bike-shop-client.vercel.app/payment-error');
+  res.redirect('http://localhost:3000/tenant-requests/payment');
 });
 
 export const PaymentControllers = {
