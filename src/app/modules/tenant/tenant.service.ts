@@ -35,51 +35,6 @@ const getAllRequestsFromDB = async (
   return result;
 };
 
-// const getListingByIdFromDB = async (id: string) => {
-//   // check if listing exists by id
-//   const listing = await Listing.isListingExistById(id);
-
-//   if (!listing) {
-//     throw new AppError(StatusCodes.NOT_FOUND, 'Listing not found');
-//   }
-//   const result = await Listing.findById(id).populate("landLord");
-
-//   return result;
-// };
-
-// const updateListingByIdIntoDB = async (
-//   id: string,
-//   payload: Partial<IListing>,
-// ) => {
-//   // check if listing exists by id
-//   const listing = await Listing.isListingExistById(id);
-
-//   if (!listing) {
-//     throw new AppError(StatusCodes.NOT_FOUND, 'Listing not found');
-//   }
-
-//   // update the listing
-//   const result = await Listing.findByIdAndUpdate(id, payload, {
-//     new: true,
-//     runValidators: true,
-//   });
-
-//   return result;
-// };
-
-// const deleteListingByIdFromDB = async (id: string) => {
-//   // check if listing exists by id
-//   const listing = await Listing.isListingExistById(id);
-
-//   if (!listing) {
-//     throw new AppError(StatusCodes.NOT_FOUND, 'Listing not found');
-//   }
-
-//   // delete the listing
-//   const result = await Listing.findByIdAndDelete(id);
-
-//   return result;
-// };
 
 export const RequestServices = {
   createRequestIntoDB,

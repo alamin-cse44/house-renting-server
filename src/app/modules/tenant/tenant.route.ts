@@ -20,19 +20,5 @@ router.get(
   RequestControllers.getAllRequests,
 );
 
-// router.get('/:id', ListingControllers.getListingById);
-
-// router.patch(
-//   '/:id',
-//   auth(USER_ROLE.landLord, USER_ROLE.admin),
-//   validateRequest(ListingValidations.updateListingValidaitonSchema),
-//   ListingControllers.updateListingById,
-// );
-
-// router.delete(
-//   '/:id',
-//   auth(USER_ROLE.landLord),
-//   ListingControllers.deleteListingById,
-// );
 
 export const RequestRouters = router;

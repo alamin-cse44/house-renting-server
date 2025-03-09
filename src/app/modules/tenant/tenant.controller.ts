@@ -27,41 +27,6 @@ const getAllRequests = catchAsync(async (req, res) => {
   });
 });
 
-// const getListingById = catchAsync(async (req, res) => {
-//   const { id } = req.params;
-//   const result = await ListingServices.getListingByIdFromDB(id);
-
-//   sendResponse(res, {
-//     statusCode: StatusCodes.OK,
-//     success: true,
-//     message: 'Listing is retrieved successfully',
-//     data: result,
-//   });
-// });
-
-// const updateListingById = catchAsync(async (req, res) => {
-//   const { id } = req.params;
-//   const result = await ListingServices.updateListingByIdIntoDB(id, req.body);
-
-//   sendResponse(res, {
-//     statusCode: StatusCodes.OK,
-//     success: true,
-//     message: 'Listing is updated successfully',
-//     data: result,
-//   });
-// });
-
-// const deleteListingById = catchAsync(async (req, res) => {
-//   const { id } = req.params;
-//   const result = await ListingServices.deleteListingByIdFromDB(id);
-
-//   sendResponse(res, {
-//     statusCode: StatusCodes.OK,
-//     success: true,
-//     message: 'Listing is deleted successfully',
-//     data: result,
-//   });
-// });
 
 export const RequestControllers = {
   createRequest,
