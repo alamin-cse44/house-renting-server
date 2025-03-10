@@ -2,9 +2,6 @@ import { Router } from 'express';
 import { UserRouters } from '../modules/user/user.route';
 import { AdminRouters } from '../modules/admin/admin.route';
 import { AuthRouters } from '../modules/auth/auth.route';
-import { BikeRouters } from '../modules/bike/bike.route';
-import { OrderRouters } from '../modules/order/order.route';
-import { CartRouters } from '../modules/cart/cart.route';
 import { PaymentRouters } from '../modules/payment/payment.route';
 import { ListingRouters } from '../modules/listing/listing.route';
 import { RequestRouters } from '../modules/tenant/tenant.route';
@@ -31,18 +28,6 @@ const moduleRoutes = [
   {
     path: '/tenants',
     route: RequestRouters,
-  },
-  {
-    path: '/bikes',
-    route: BikeRouters,
-  },
-  {
-    path: '/orders',
-    route: OrderRouters,
-  },
-  {
-    path: '/carts',
-    route: CartRouters,
   },
   {
     path: '/payments',
