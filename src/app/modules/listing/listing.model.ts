@@ -21,6 +21,10 @@ const listingSchema = new Schema<IListing, ListingModel>(
       type: String,
       trim: true,
     },
+    discount: {
+      type: String,
+      trim: true,
+    },
     price: {
       type: Number,
       required: [true, 'Please enter the price of the house'],

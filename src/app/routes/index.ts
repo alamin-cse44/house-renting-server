@@ -5,6 +5,7 @@ import { AuthRouters } from '../modules/auth/auth.route';
 import { PaymentRouters } from '../modules/payment/payment.route';
 import { ListingRouters } from '../modules/listing/listing.route';
 import { RequestRouters } from '../modules/tenant/tenant.route';
+import { CategoryRouters } from '../modules/category/category.route';
 
 const router = Router();
 
@@ -32,6 +33,10 @@ const moduleRoutes = [
   {
     path: '/payments',
     route: PaymentRouters,
+  },
+  {
+    path: '/categories',
+    route: CategoryRouters,
   },
 ];
 

@@ -6,6 +6,7 @@ export interface IListing {
   landLord: Types.ObjectId | IUser;
   location: string;
   description: string;
+  discount?: string;
   price: number;
   bedrooms: number;
   image: { url: string }[];
