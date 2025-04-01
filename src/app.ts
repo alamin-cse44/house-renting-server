@@ -11,7 +11,9 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: 'https://house-renting-nine.vercel.app',
+    origin: [
+      // 'https://house-renting-nine.vercel.app',
+      'http://localhost:3000'],
     credentials: true,
   }),
 );

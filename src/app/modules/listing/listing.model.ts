@@ -22,8 +22,12 @@ const listingSchema = new Schema<IListing, ListingModel>(
       trim: true,
     },
     discount: {
-      type: String,
-      trim: true,
+      type: Number,
+      required: [true, 'Please enter the discount of the house'],
+      validate: {
+        validator: (value: number) => value >= 0,
+        message: 'The house discount must be a non-negative number',
+      },
     },
     price: {
       type: Number,
