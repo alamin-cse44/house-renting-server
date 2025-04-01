@@ -35,7 +35,7 @@ const moduleRoutes = [
     route: PaymentRouters,
   },
   {
-    path: '/categories',
+    path: '/category',
     route: CategoryRouters,
   },
 ];
